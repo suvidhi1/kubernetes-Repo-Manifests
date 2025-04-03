@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: cart-page-rs
+  namespace: suvidhi-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      web: cart
+  template: #it defines which application we have to deploy ina cluster(pod)
+    metadata:
+      labels:
+        web: cart
+    spec: #it defines behavior of the podand its containers
+      containers:
+        - name: cart-container
+          image: muralisocial123/cart-page-test:1.0
+          ports:
+            - containerPort: 3000
